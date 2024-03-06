@@ -1,3 +1,3 @@
 # bancos
 
-### Docker composer file conrtendo um banco mariadb e outro postgres13
+### Docker compose file contendo um banco mariadb e outro postgres13
