@@ -1,0 +1,43 @@
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=123
+      - MARIADB_DATABASE=test
+    ports:
+      - '3306:3306'
+    volumes:
+      - './mariadb/data:/var/lib/mysql'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 64M
+    hostname: 'mariadb'
+    container_name: 'mariadb'
+    restart: unless-stopped
+  
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - './pgdata:/var/lib/postgresql/data'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 64M
+    hostname: 'postgres-alpine'
+    container_name: 'postgresa-alpine'
+    restart: unless-stopped
+version: '3.9'
