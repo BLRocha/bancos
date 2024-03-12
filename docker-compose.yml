@@ -40,4 +40,21 @@ services:
     hostname: 'postgres-alpine'
     container_name: 'postgresa-alpine'
     restart: unless-stopped
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - './redis:/usr/local/etc/redis'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 64M
+    hostname: 'redis-alpine'
+    container_name: 'redis-alpine'
+    restart: unless-stopped
 version: '3.9'
